@@ -1,7 +1,7 @@
 import { Add, Remove } from "@material-ui/icons";
 import {useEffect} from "react";
 import {useState} from "react";
-import {useLocation} from "react-router-dom";
+import {useLocation, useParams} from "react-router-dom";
 import styled from "styled-components"
 import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
@@ -127,19 +127,24 @@ const Button=styled.button`
 
 
 const Product = () => {
-    const location=useLocation();
-    const id=location.pathname.split("/")[2];
+    // const location=useLocation();
+    const params=useParams();
+    const id=params.id;
+    // const id=location.pathname.split("/")[2];
     const [product,setProduct]=useState({});
     const [quantity,setQuantity]=useState(1);
     const [color,setColor]=useState("");
-    const [size,setSize]=useState("");
+    const [size,setSize]=useState(null);
     const dispatch = useDispatch();
 
     useEffect(()=>{
         const getProduct= async()=>{
             try {
                 const res= await publicRequest.get("/products/find/"+id);
+                console.log(res.data.color[0]);
                 setProduct(res.data);
+                setColor(res.data.color[0]);
+                setSize(res.data.size[0]);
 
             } catch{}
         }
@@ -155,6 +160,7 @@ const Product = () => {
     };
 
     const handleClick=()=>{
+
         dispatch(addProduct({...product,quantity,color,size}));
     };
 

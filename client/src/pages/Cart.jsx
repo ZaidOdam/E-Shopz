@@ -224,9 +224,9 @@ const Cart = () => {
                             </ProductDetail>
                             <PriceDetail>
                                 <ProductAmountContainer>
-                                    <Add/>
-                                    <ProductAmount>{product.quantity}</ProductAmount>
                                     <Remove/>
+                                    <ProductAmount>{product.quantity}</ProductAmount>
+                                    <Add/>
                                 </ProductAmountContainer>
                                 <ProductPrice>{product.price*product.quantity}/-</ProductPrice>
                             </PriceDetail>
