@@ -10,10 +10,12 @@ export default function Sidebar() {
                 <h3 className="sidebarTitle">Dashboard</h3>
             
                 <ul className="sidebarList">
-                    <li className="sidebarListItem active">
-                        <Home className="sidebarIcon" />
-                        Home
-                    </li>
+                    <a href="/">
+                        <li className="sidebarListItem active">
+                            <Home className="sidebarIcon" />
+                            Home
+                        </li>
+                    </a>
                     <li className="sidebarListItem">
                         <Timeline className="sidebarIcon"/>
                         Analytics
@@ -26,16 +28,20 @@ export default function Sidebar() {
             </div>
             <div className="sidebarMenu">
                 <h3 className="sidebarTitle">Quick Menu</h3>
-            
-                <ul className="sidebarList">
-                    <li className="sidebarListItem">
-                        <Person className="sidebarIcon" />
-                        Users
-                    </li>
-                    <li className="sidebarListItem">
-                        <Storefront className="sidebarIcon"/>
-                        Products
-                    </li>
+                
+                <ul className="sidebarList">  
+                    <a href="/users"> 
+                        <li className="sidebarListItem">
+                            <Person className="sidebarIcon" />
+                            Users
+                        </li>
+                    </a> 
+                    <a href="/products">
+                        <li className="sidebarListItem">
+                            <Storefront className="sidebarIcon"/>
+                            Products
+                        </li>
+                    </a>
                     <li className="sidebarListItem">
                         <AttachMoney className="sidebarIcon"/>
                         Transactions
@@ -44,7 +50,7 @@ export default function Sidebar() {
                         <BarChart className="sidebarIcon"/>
                         Reports
                     </li>
-                </ul>
+                </ul>  
             </div>
             <div className="sidebarMenu">
                 <h3 className="sidebarTitle">Notifications</h3>
