@@ -1,7 +1,7 @@
 import { Add, Remove } from "@material-ui/icons";
 import {useEffect} from "react";
 import {useState} from "react";
-import {useLocation, useParams} from "react-router-dom";
+import { useParams} from "react-router-dom";
 import styled from "styled-components"
 import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";

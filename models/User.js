@@ -8,6 +8,7 @@ const UserSchema = new mongoose.Schema({
         type: Boolean,
         default: false,
     },
+    img: { type: String },
     // createdAt:Date.now() -No need if using mongoose we have option like timestamps
 }, { timestamps: true });
 
