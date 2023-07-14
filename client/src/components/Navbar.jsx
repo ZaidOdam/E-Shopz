@@ -3,8 +3,9 @@ import { Search, ShoppingCartOutlined } from '@material-ui/icons'
 import React from 'react'
 import styled from 'styled-components'
 import {mobile} from "../responsive"
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {Link, useNavigate} from 'react-router-dom';
+import {logout} from "../redux/apiCalls";
 
 const Container= styled.div`
     height:60px;
@@ -52,6 +53,7 @@ const Centre=styled.div`
 `;
 
 const Logo=styled.h1`
+    cursor: pointer;
     font-weight: bold;
     ${mobile({fontSize:"18px"})};
 `;
@@ -74,6 +76,10 @@ const MenuItem= styled.div`
 const Navbar = () => {
     const quantity= useSelector(state=>state.cart.quantity);
     const navigate=useNavigate();
+
+    const user=useSelector(state=>state.user.currentUser);
+    const dispatch=useDispatch();
+
   return (
     <Container>
         <Wrapper>
@@ -86,12 +92,18 @@ const Navbar = () => {
             </Left>
 
             <Centre>
-                <Logo>E-Shopz</Logo>
+                <Logo onClick={()=>{navigate("/")}} >E-Shopz</Logo>
             </Centre>
 
             <Right>
-                <MenuItem onClick={()=>{navigate("/register")}}>REGISTER</MenuItem>
-                <MenuItem onClick={()=>{navigate("/login")}}>SIGN IN</MenuItem>
+                { user===null ? (
+                    <>
+                        <MenuItem onClick={()=>{navigate("/register")}}>REGISTER</MenuItem>
+                        <MenuItem onClick={()=>{navigate("/login")}}>SIGN IN</MenuItem>
+                    </>
+                ) : (
+                    <MenuItem onClick={()=>{logout(dispatch)}}>LOGOUT</MenuItem>
+                )}
                 <Link to="/cart">
                 <MenuItem>
                     <Badge badgeContent={quantity} color="primary" overlap="rectangular">

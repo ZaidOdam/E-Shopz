@@ -13,13 +13,20 @@ import Login from "./pages/login/Login";
 
 
 function App() {
-  const admin=JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser.isAdmin;
+  let admin=null;
+  try{
+    console.log(JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser.isAdmin);
+    admin=JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser.isAdmin;
+  }catch(err){
+    console.log(err);
+  }
   return (
     <div>
       <Router>
           <Routes>
             <Route path="/login" element={<Login/>}/>
           </Routes>
+          
           {admin &&
             
             <>
