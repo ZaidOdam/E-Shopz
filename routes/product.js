@@ -50,6 +50,26 @@ router.get("/find/:id", async(req, res) => {
 });
 
 
+router.get("/search", async(req, res) => {
+    try {
+        const queryText = req.query.search;
+
+        const query = {
+            $or: [
+                { title: { $regex: queryText, $options: "i" } },
+                { categories: { $in: [queryText] } }
+            ]
+        };
+
+        const products = await Product.find(query);
+        res.status(200).json(products);
+
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+
 // GET ALL PRODUCTS
 router.get("/", async(req, res) => {
     const qNew = req.query.new;

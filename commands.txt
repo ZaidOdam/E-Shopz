@@ -1,2 +1,2 @@
-To Run Dev erver- npm run Dev
+To Run Dev Server- npm run Dev
 To start client- npm start
