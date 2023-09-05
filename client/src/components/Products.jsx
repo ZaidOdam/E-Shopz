@@ -1,15 +1,9 @@
-import {
-  FavoriteBorderOutlined,
-  SearchOutlined,
-  ShoppingCartOutlined,
-} from "@material-ui/icons";
-import React from "react";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import { addProduct } from "../redux/cartRedux";
+import { FavoriteBorderOutlined, SearchOutlined, ShoppingCartOutlined } from '@material-ui/icons';
+import React from 'react'
+import {Link} from 'react-router-dom';
+import styled from 'styled-components'
 
-const Info = styled.div`
+const Info=styled.div`
     opacity: 0;
     width: 100%;
     height: 100%;
@@ -25,7 +19,7 @@ const Info = styled.div`
     cursor: pointer;
 `;
 
-const Container = styled.div`
+const Container=styled.div`
     flex: 1;
     margin: 5px;
     min-width: 280px;
@@ -41,7 +35,7 @@ const Container = styled.div`
     } 
 `;
 
-const Circle = styled.div`
+const Circle=styled.div`
     width: 200px;
     height: 200px;
     border-radius: 50%;
@@ -49,12 +43,12 @@ const Circle = styled.div`
     position: absolute;
 `;
 
-const Image = styled.img`
+const Image=styled.img`
     height: 75%;
     z-index: 2;
 `;
 
-const Icon = styled.div`
+const Icon=styled.div`
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -71,39 +65,26 @@ const Icon = styled.div`
     }
 `;
 
-const Products = ({ item }) => {
-  const dispatch = useDispatch();
-  const handleClick = () => {
-    const product = item;
-    product.color = product.color[0];
-    product.size = product.size[0];
-    product.quantity = 1;
-
-    try {
-      dispatch(addProduct(product));
-    } catch (err) {
-      console.log(err);
-    }
-  };
+const Products = ({item}) => {
   return (
     <Container>
-      <Circle />
-      <Image src={item.img} />
-      <Info>
-        <Icon>
-          <ShoppingCartOutlined onClick={handleClick} />
-        </Icon>
-        <Icon>
-          <Link to={`/product/${item._id}`}>
-            <SearchOutlined />
-          </Link>
-        </Icon>
-        <Icon>
-          <FavoriteBorderOutlined />
-        </Icon>
-      </Info>
+        <Circle/>
+        <Image src={item.img}/>
+        <Info>
+            <Icon>
+                <ShoppingCartOutlined/>
+            </Icon>
+            <Icon>
+                <Link to={`/product/${item._id}`}>
+                <SearchOutlined/>
+                </Link>
+            </Icon>
+            <Icon>
+                <FavoriteBorderOutlined/>
+            </Icon>
+        </Info>
     </Container>
-  );
-};
+  )
+}
 
-export default Products;
+export default Products
